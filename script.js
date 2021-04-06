@@ -19,6 +19,19 @@ if (navigator.geolocation) {
       const { latitude } = pos.coords;
       const { longitude } = pos.coords;
       console.log(latitude, longitude);
+      const coordinates = [latitude, longitude];
+
+      const map = L.map('map').setView(coordinates, 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      L.marker(coordinates)
+        .addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
     },
     function () {
       alert(`Couldn't get your location.`);
