@@ -120,7 +120,11 @@ class App {
     //  Hide form + Clear input fields
     inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value =
       '';
+    form.style.display = 'none';
     form.classList.add('hidden');
+    setTimeout(() => {
+      form.style.display = 'grid';
+    }, 1000);
   }
 
   _newWorkOut(e) {
@@ -195,7 +199,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent('Workout!')
+      .setPopupContent(
+        `${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♂️'} ${workout.description}`
+      )
       .openPopup();
   }
 
